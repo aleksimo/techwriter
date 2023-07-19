@@ -18,8 +18,10 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'aleksimo', // Usually your GitHub org/user name.
+  projectName: 'techwriter-cv', // Usually your repo name.
+  deploymentBranch: 'main',
+  trailingSlash: false,
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -134,7 +136,7 @@ const config = {
             to: '/contacts'
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/aleksimo/my-cv',
             label: 'GitHub',
             position: 'right',
           },

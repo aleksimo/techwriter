@@ -36,7 +36,7 @@ I also believe that each challenge or difficult phase offers a valuable opportun
 
 ## Hobbies
 
-As a technical writer, I thrive on the diversity and richness my hobbies bring into my life. Traveling is my absolute favorite; it's like stepping into another world with different cultures and traditions I would never have encountered. Along my travels, I carry my trusted camera, capturing fleeting moments and breathtaking sceneries. Photography has taught me to appreciate details and perspectives, skills that have been invaluable in my writing. See some of my works on a *separate page*.
+As a technical writer, I thrive on the diversity and richness my hobbies bring into my life. Traveling is my absolute favorite; it's like stepping into another world with different cultures and traditions I would never have encountered. Along my travels, I carry my trusted camera, [capturing fleeting moments and breathtaking sceneries](photo.mdx). Photography has taught me to appreciate details and perspectives, skills that have been invaluable in my writing. See some of my works on a *separate page*.
 
 I also find immense joy in immersing myself in the study of art history. It's like a journey through time, a peek into human emotions and thoughts across different eras. This exploration has deepened my understanding of societal shifts and cultural influences, adding a unique perspective to my work. My fascination with art history is particularly piqued by the period leading up to the 1930s, where surrealism held sway. The captivating works of artists like Giorgio De Chirico and René Magritte, with their dreamlike landscapes and paradoxical images, have always been my favorites, stirring my imagination and influencing my perspective on the world.
 
