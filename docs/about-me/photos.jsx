@@ -14,7 +14,7 @@ const MyGallery = () => {
     },
 
     {
-        src: "/static/img/photos/DSC_4133.png",
+        src: "/img/photos/DSC_4133.png",
         width: 480,
     },
     {
