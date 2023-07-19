@@ -5,7 +5,7 @@ import { Gallery } from "react-grid-gallery";
 const MyGallery = () => {
     const images = [
     {
-        src: "/img/photos/DSC_3329.png",
+        src: "/static/img/photos/DSC_3329.png",
         width: 480,
     },
     {
