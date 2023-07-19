@@ -18,7 +18,7 @@ const MyGallery = () => {
         width: 480,
     },
     {
-        src: "/img/photos/IMG_20220608_220429_396.png",
+        src: "/static/img/photos/IMG_20220608_220429_396.png",
         width: 480,
     },
 
