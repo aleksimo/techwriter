@@ -9,7 +9,7 @@ const MyGallery = () => {
         width: 480,
     },
     {
-        src: "/img/photos/DSC_3341.png",
+        src: "/static/img/photos/DSC_3341.png",
         width: 480,
     },
 
