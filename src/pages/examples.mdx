@@ -1,0 +1,57 @@
+---
+id: examples
+title: Examples of work
+---
+
+# Examples of work
+
+This page contains the samples of my work for the past 4-5 years and one abstract from 2018. Here, you can find the examples of written guides, release notes, internal instructions, and microcopy for the Product interface. Click the links to see the samples.
+
+## Technical writing
+
+- [Configuration guide](/docs/examples/dw) — a user guide for Business Analysts on configuring a newly installed Digital Worker: a software solution for searching and reviewing news about a person or company. This sample is a partial article and is presented as published.
+
+- [Installation guide](/docs/examples/install) — a sample guide on Product installation via CLI for internal and external DevOps and SRE engineers.
+
+- [Administrator's guide](/docs/examples/access) — a how-to guide for system administrators on enabling users to access custom analytics dashboards via open-source tools Superset and Keycloak.
+
+- [Release notes](/docs/examples/release-notes) — a sample of the document provided with a software update that summarize the new features, improvements, and bug fixes included in the new version.
+- [CI/CD implementation guide](/img/samples/sample-3-instruction-2018.pdf) — this sample is part of the internal CI/CD tool documentation based on Docker and Mesos/Marathon. The documentation is initially written in markdown (same as the guides earlier) and published on the portal via Jenkins and the Hugo Static Site generator. **Audience**: internal DevOps team. Wargaming, 2018.
+- [Team process](/img/samples/team-process_.pdf) — the instruction for newly hired mid-senior technical writers. I created the document in the internal Confluence-based knowledge base to facilitate the onboarding process and answer most common questions.
+
+## UX Writing
+
+Microcopy for prototypes
+
+## Documentation portal
+
+This humble website also serves as an example of my work within the Docs as Code paradigm. I have used the Docusaurus static site generator for the past four years as the documentation engine.
+
+![](/img/website.png)
+
+Here's how the typical documentation flow is organized:
+
+1. I create the first draft of an article in the Markdown format inside the specific branch in a local repository.
+2. Once the draft is finished, I commit and push the article to the remote repository and make a Pull Request from my branch to the Develop one. Inside the PR, I tag my fellow writers and stakeholders to notify them about changes and ask them to review the article.
+3. If all is good, the reviewers approve the Pull Request, and I'm good to merge it into the Develop branch.
+4. Once the changes appear in the branch, the Jenkins CI/CD tool triggers automatically and runs a documentation-building job consisting of three steps:
+
+    1. Check the changes out of the repository and place the content inside the internal Workspace.
+    2. Run the Documentation building command. Usually, it's `npm run build` for the Docusaurus-based websites. This command produces the artifact in the form of multiple HTML files and associated assets.
+    3. The artifact is deployed to the prepared staging instance.
+
+    From now on, I can see how the updated website will look for the clients and check for visual or structural issues.
+
+5. If everything looks good, I repeat steps 3-4, but this time make a Pull request from the Develop to the Master branch.
+6. After the building job finishes successfully, the applied changes appear on the client's Documentation Portal.
+
+The documentation is configured and styled only once, so I don't need to adjust parameters often. Sometimes I request assistance from DevOps engineers and administrators in setting up repositories, CI/CD tools, and web servers.
+
+<!--
+learning-oriented tutorials
+
+goal-oriented how-to guides
+
+understanding-oriented discussions
+
+information-oriented reference material -->

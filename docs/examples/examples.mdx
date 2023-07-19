@@ -1,0 +1,77 @@
+---
+id: examples
+title: Examples of work
+---
+
+Preface
+
+## [Configuration guide](/docs/examples/dw.md)
+
+A Digital Worker is a software solution for searching and reviewing news about a person or company to determine if conducting business with them would incur a reputational risk or potential involvement with criminal activity. The software is used in banks and other financial institutions as part of the Know Your Customer (KYC) and Anti-Money Laundering (AML) processes.
+
+This sample is a partial article and is presented as published.
+
+**Target audience**: Business Analysts
+
+## Installation guide
+
+Terminal.
+
+**Target audience**: internal and external DevOps and SRE engineers
+
+## [Administrator's guide](access.md)
+
+A how-to guide on enabling users to access custom analytics dashboards via open-source tools Superset and Keycloak.
+
+**Target audience**: client's system administrators
+
+## [Release notes](release-notes.md)
+
+**Target audience**: broad, external and internal Project Managers, Directors, and other business personas
+
+## Documentation portal
+
+This humble website also serves as an example of my work within the Docs as Code paradigm. I have used the Docusaurus static site generator for the past four years as the documentation engine.
+
+![](/img/website.png)
+
+Here's how the typical documentation flow is organized:
+
+1. I create the first draft of an article in the Markdown format inside the specific branch in a local repository.
+2. Once the draft is finished, I commit and push the article to the remote repository and make a Pull Request from my branch to the Develop one. Inside the PR, I tag my fellow writers and stakeholders to notify them about changes and ask them to review the article.
+3. If all is good, the reviewers approve the Pull Request, and I'm good to merge it into the Develop branch.
+4. Once the changes appear in the branch, the Jenkins CI/CD tool triggers automatically and runs a documentation-building job consisting of three steps:
+
+    1. Check the changes out of the repository and place the content inside the internal Workspace.
+    2. Run the Documentation building command. Usually, it's `npm run build` for the Docusaurus-based websites. This command produces the artifact in the form of multiple HTML files and associated assets.
+    3. The artifact is deployed to the prepared staging instance.
+
+    From now on, I can see how the updated website will look for the clients and check for visual or structural issues.
+
+5. If everything looks good, I repeat steps 3-4, but this time make a Pull request from the Develop to the Master branch.
+6. After the building job finishes successfully, the applied changes appear on the client's Documentation Portal.
+
+The documentation is configured and styled only once, so I don't need to adjust parameters often. Sometimes I request assistance from DevOps engineers and administrators in setting up repositories, CI/CD tools, and web servers.
+
+## Team onboarding instruction
+
+**Audience**: newly hired mid-senior technical writers
+
+## Microcopy for prototypes
+
+UX Writing
+
+## [CI/CD implementation guide](/img/samples/sample-3-instruction-2018.pdf)
+
+This sample is part of the internal CI/CD tool documentation based on Docker and Mesos/Marathon. The documentation is initially written in markdown (same as the guides earlier) and published on the portal via Jenkins and the Hugo Static Site generator.
+
+**Audience**: internal DevOps team. Wargaming, 2018.
+
+<!--
+learning-oriented tutorials
+
+goal-oriented how-to guides
+
+understanding-oriented discussions
+
+information-oriented reference material -->
