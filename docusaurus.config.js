@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://aleksimo.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/techwriter/',
@@ -44,8 +44,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editCurrentVersion: false,
           showLastUpdateTime: true,
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         // blog: {
         //   showReadingTime: true,
@@ -85,6 +84,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
+      metadata: [{name: 'keywords', content: 'technical writer, documentation, portfolio, skills, software documentation, docs as code, static site generator, markdown, git,ux writing, product ownership'}],
       zoom: {
         selector: '.markdown :not(em) > img',
         background: {

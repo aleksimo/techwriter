@@ -16,7 +16,7 @@ My core goal is to empower users with technology, not overwhelm them. I leverage
 
 I've always stayed up-to-date with all the latest tools and practices in technical writing. First, it was **authoring tools** like Help&Manual and Atlassian Confluence. In recent years, I've focused more on the **Docs as Code** approach and collaborative work environments, utilizing platforms like Bitbucket and Jira for version control and project management. This helps me stay connected with various stakeholders and ensures the documentation process is transparent and efficient.
 
-![](/img/pipeline.png)
+![Docs as Code pipeline](/img/pipeline.png)
 
 The tool itself is not the key but how we wield it with our thoughts; after all, learning a new tool may take weeks, but honing the craft of innovative thinking can transform a lifetime.
 
@@ -40,7 +40,7 @@ As a technical writer, I thrive on the diversity and richness my hobbies bring i
 
 I also find immense joy in immersing myself in the study of art history. It's like a journey through time, a peek into human emotions and thoughts across different eras. This exploration has deepened my understanding of societal shifts and cultural influences, adding a unique perspective to my work. My fascination with art history is particularly piqued by the period leading up to the 1930s, where surrealism held sway. The captivating works of artists like Giorgio De Chirico and René Magritte, with their dreamlike landscapes and paradoxical images, have always been my favorites, stirring my imagination and influencing my perspective on the world.
 
-![de ciriko illutration](/img/photos/IMG_20191230_164005-01.jpg)
+![Giorgio de Chirico](/img/photos/IMG_20191230_164005-01.jpg)
 
 Recently, I've embarked on a new musical journey-learning to play the harmonica, discovering a fun, casual pastime that fits right into my pocket. It's been an exciting endeavor so far, providing a refreshing break from my usual routine.
 <!--

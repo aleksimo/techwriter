@@ -12,7 +12,7 @@ Issued: April 2021, No Expiration Date
 
 Credential ID: [118-22574-98e9d353-a227-4aa6-8acf-9e4da1973588](https://www.icagile.com/credentials/98e9d353-a227-4aa6-8acf-9e4da1973588)
 
-![](/img/04052021072710535.png)
+![Agile Product Ownership Certification](/img/04052021072710535.png)
 
 ## Education
 
