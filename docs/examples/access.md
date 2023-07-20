@@ -5,11 +5,11 @@ title: Grant access to Superset dashboards
 tags: [Access & security]
 ---
 
-Superset is an analytics tool that helps you monitor metrics related to Digital Workers. Superset is installed along the product, so you only need to configure access for users to start working with it. Once you install a new DW skill, its dashboard appears automatically in Control Tower.
+Superset is an analytics tool that helps you monitor metrics related to Digital Workers. Superset is installed along the product, so you only need to configure access for users to start working with it. Once you install a new DW, its dashboard appears automatically in Control Tower.
 
 To access Superset-based Digital Workers dashboards, in Control Tower, click the title, and in the dropdown box, click **Insights**.
 
-To verify that a dashboard is ready for use, as an admin user, check the connection to databases and datasets:
+To verify that a dashboard is ready for use, as an `admin` user, check the connection to databases and datasets:
 
 1. On the Superset main screen, click **Settings** > **Database Connections**.
 
@@ -43,6 +43,7 @@ To provide access to data, do the following:
 3. In the dataset window, go to the **Settings** tab, and in the **Owners** box, add or remove the access group.
 
     Currently, there are two access groups available:
+    
     - **Superset admin** has full access to the Keycloak and the dashboards. These users can select the dashboards and provide access to them for specific users in the **read_only** group.
     - The **read_only** users can only view dashboards but can't alter them. These users can see only the dashboards to which they have access.
 
