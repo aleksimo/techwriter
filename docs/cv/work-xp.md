@@ -11,7 +11,7 @@ title: Work experience
 :::info April 2019—present
 :::
 
-- Created and managed **documentation** for customers, developers, and DevOps.
+- **Created and managed documentation** for customers, developers, and DevOps.
 
     The work was mainly about creating instructions for internal and external Site Reliability and DevOps engineers to help them install the Product on-premise and in AWS/GCP, configure it, and maintain the correct operation. Such comprehensive documentation allowed us to decrease the number of requests to the Support team by 20-30%.
 
@@ -44,17 +44,17 @@ title: Work experience
 :::info June 2020—Present
 :::
 
-- Managed and prioritized Documentation backlog.
+- Managed and prioritized **Documentation backlog**.
 
     I participated in monthly Company-wide sessions, presenting the team's plans for the next two sprints. While preparing for planning, I assessed the scope and risks, decided on the priority of tasks, created new Stories, Epics, and Master Features in Jira, and described and decomposed them.
 
-- Supervised a team of three technical writers.
+- **Supervised** a team of three technical writers.
 
     Three (with periodic growth of up to four) writers were on the team, including myself. As they were strong professionals of the Senior Level, none required micromanagement or excessive supervision. The work was organized so that everyone worked in their domain, only asking others about clarification of related areas or when technical issues arose. Also, we constantly shared new information and approaches and grew professionally together.
 
     I strived to create a safe space within the team that was open to discussions, questions, disputes, and ideas. As a result, we all worked in a healthy environment, without inflated egos or toxic attitudes, where everybody knew they could be backed and get help anytime.
 
-- Planned the team's activity and capacity, created roadmaps, and managed the Scrum workflow.
+- Planned the **team's activity and capacity**, created roadmaps, and managed the Scrum workflow.
 
     Organizing transparent work was my domain, and I owned the tasks related to Jira and Project Management so that the team could only think about quality writing.
 
