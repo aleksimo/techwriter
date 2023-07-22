@@ -4,7 +4,7 @@ title: About me
 sidebar_position: 1
 ---
 
-Hello, I'm Alexey (you can also call me Alex), and I've been navigating the world of technical writing for nearly a decade. Over the years, I've come to see my role not just as a writer but as a translator, distilling complex information into accessible, user-friendly language. I've made a career out of bridging the gap between technical experts and the consumers who use their innovations daily.
+Hello, I'm Aleksei (you can also call me Alex), and I've been navigating the world of technical writing for nearly a decade. Over the years, I've come to see my role not just as a writer but as a translator, distilling complex information into accessible, user-friendly language. I've made a career out of bridging the gap between technical experts and the consumers who use their innovations daily.
 
 ## Carreer
 

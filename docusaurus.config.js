@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Alexey Simonenko',
+  title: 'Aleksei Simonenko',
   tagline: 'Bridging the Gap: From Tech Talk to Simple Speak!',
   favicon: 'img/favicon.ico',
 
@@ -102,7 +102,7 @@ const config = {
         },
       },
       navbar: {
-        title: 'Alexey Simonenko | technical writer',
+        title: 'Aleksei Simonenko | technical writer',
         hideOnScroll: true,
         logo: {
           alt: 'My Site Logo',
