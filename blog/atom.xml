@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aleksimo.github.io/techwriter/blog</id>
-    <title>Alexey Simonenko Blog</title>
+    <title>Aleksei Simonenko Blog</title>
     <updated>2021-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aleksimo.github.io/techwriter/blog"/>
-    <subtitle>Alexey Simonenko Blog</subtitle>
+    <subtitle>Aleksei Simonenko Blog</subtitle>
     <icon>https://aleksimo.github.io/techwriter/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
