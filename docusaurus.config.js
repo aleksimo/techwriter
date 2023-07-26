@@ -23,7 +23,7 @@ const config = {
   trailingSlash: false,
 
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -120,7 +120,7 @@ const config = {
             position: 'right',
             sidebarId: 'Examples',
             label: 'Portfolio',
-            to: '/examples'
+            to: '/portfolio'
 
           },
           {
