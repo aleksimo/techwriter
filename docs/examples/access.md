@@ -9,7 +9,7 @@ Superset is an analytics tool that helps you monitor metrics related to Digital 
 
 To access Superset-based Digital Workers dashboards, in Control Tower, click the title, and in the dropdown box, click **Insights**.
 
-To verify that a dashboard is ready for use, as an `admin` user, check the connection to databases and datasets:
+To verify that a dashboard is ready for use, check the connection to databases and datasets as an `admin` user:
 
 1. On the Superset main screen, click **Settings** > **Database Connections**.
 
@@ -89,5 +89,5 @@ To assign the read-only role to a specific user, do the following:
 
 4. In the **Available Roles** box, select the **read-only** role and click **Add** to move it to the **Assigned Roles** box.
 
-    If the user logs in for the first time, Superset communicates with the Keycloak. If the person is valid, Keycloak displays the assigned roles and provides access to Superset.
+    If the user logs in for the first time, Superset communicates with the Keycloak. If the person is valid, Keycloak displays the assigned roles and provides Superset access to the user.
 

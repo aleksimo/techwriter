@@ -79,9 +79,11 @@ See the following sections for a detailed description of the Google provider set
     - HTML is included by default.
     - Non-HTML file types do not have the same metadata and tagging. Excluding them reduces the number of articles to review and false hits by 50% without increasing the risk of missing a true hit.
 
+After setting the **Input** parameters, click **Next** to go to the following step of the wizard.
+
 ### Investigation step
 
-After setting the Input parameters, click **Next** to go to the following step of the wizard.
+In the following step, specify the following parameters:
 
 - **ML Model Version**. Select the model version to use. The latest model is selected by default.
 
