@@ -61,6 +61,24 @@ const config = {
         	anonymizeIP: false,
         },
       }),
+      
+    ],
+    [
+      'redocusaurus',
+    {
+      // Plugin Options for loading OpenAPI files
+      specs: [
+        {
+          spec: 'docs/examples/api/freddys.yaml',
+          route: '/api/',
+        },
+      ],
+      // Theme Options for modifying how redoc renders them
+      theme: {
+        // Change with your site colors
+        primaryColor: '#1890ff',
+      },
+    },
     ],
   ],
 
@@ -76,8 +94,8 @@ const config = {
         docsRouteBasePath: ["docs"],
         docsDir: ["docs"],
         searchResultLimits: 8,
-        searchBarShortcut: true,
-        searchBarShortcutHint: true,
+        // searchBarShortcut: true,
+        // searchBarShortcutHint: true,
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
       }),
