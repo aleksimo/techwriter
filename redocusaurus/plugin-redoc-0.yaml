@@ -6,42 +6,37 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: >
-    API specification for the Freddy's artisanal shop API.
+    This API serves as the backbone for managing Freddy's artisanal Halloween
+    candy shop. Through this API, Freddy can perform various tasks such as
+    managing dashboard data, handling orders, and authenticating users.
 
 
-    ### Brief
+    ### API Behavior
+
+    - **Authentication**: Almost every endpoint requires authentication. A
+    missing or invalid `access_token` will result in a `401 Unauthorized`
+    response.
+
+    - **Error Handling**: Proper error messages are provided to guide through
+    the required correction. For example, a `400 Bad Request` for missing
+    parameters.
+
+    - **Rate Limiting**: Although not mentioned, it is advised to handle HTTP
+    `429 Too Many Requests` response gracefully.
 
 
-    Freddy loves Halloween. He loves it so much that he decided to open his own
-    online artisanal Halloween candy shop last year. The shop was a huge
-    success, thanks to the unique and exclusive candy stock list. Now Freddy
-    needs a simple web app to manage his candy orders. You’ve been hired to
-    document the API of that shop!
+    ### General Overview
+
+    - **Login Endpoint**: Allows the user to log in and receive access and
+    refresh tokens.
+
+    - **Dashboard Endpoint**: Provides necessary data for populating the
+    dashboard.
+
+    - **Orders Endpoint**: Fetches orders, supporting pagination and search.
 
 
-    ### Tasks
-
-
-    Create documentation based on this description from a developer.
-
-    -   **Login**: Login using the API at `https://freddy.codesubmit.io/login`
-    with POST `{ username: 'freddy', password: 'ElmStreet2019' }`. The login
-    endpoint will return a JWT `access_token` that is valid for 15 minutes and a
-    `refresh_token` which is valid for 30 days. Make sure to also provide
-    documentation on how to handle wrong credentials properly
-
-    -   **Dashboard**: Retrieve the necessary data for the dashboard at
-    `https://freddy.codesubmit.io/dashboard`. This endpoint requires a
-    `Authorization: Bearer access_token` header. Use the access token that you
-    retrieved from Login. Keep in mind that access tokens expire after 15
-    minutes. You may request a fresh access token by sending a POST request to
-    `https://freddy.codesubmit.io/refresh` with the `Authorization: Bearer
-    refresh_token` header. 
-
-    -   **Orders**: Fetch the orders at
-    `https://freddy.codesubmit.io/orders?page=1&q=search_term`. This endpoint
-    requires a `Authorization: Bearer access_token` header. Make sure to
-    document search and pagination
+    For more details on each endpoint, refer to the respective sections below.
   x-logo:
     url: Freddys_Logo.svg
 servers:
@@ -51,7 +46,15 @@ paths:
     post:
       summary: Log in to the Shop's admin panel
       operationId: login
-      description: Authenticate the user and get `access_token` and `refresh_token`.
+      description: >
+        Authenticate the user and receive `access_token` and `refresh_token`.
+        The `access_token` is used for authorization in subsequent API requests.
+
+
+        ### Behavior
+
+        - Providing incorrect credentials results in `401 Unauthorized` with an
+        explicit error message.
       requestBody:
         required: true
         content:
@@ -65,9 +68,11 @@ paths:
                 username:
                   type: string
                   default: freddy
+                  description: Username to log in.
                 password:
                   type: string
                   default: ElmStreet2019
+                  description: Password for the corresponding username.
       x-codeSamples:
         - lang: cURL
           source: |
@@ -132,6 +137,14 @@ paths:
 
         The `access_token` expires in 15 minutes after acquiring. The
         `refresh_token` expires in 30 days.
+
+
+        ### Behavior
+
+
+        An invalid or missing `refresh_token` in the header will result in a
+        `400 Bad Request` or `401 Unauthorized` response with a clear error
+        message.
       parameters:
         - in: header
           name: Authorization
@@ -284,6 +297,16 @@ paths:
         You can paginate results using the `page` parameter and filter them with
         the `q` parameter. Make sure to use the `access_token` retrieved from
         the `/login` endpoint.
+
+
+        ### Behavior
+
+
+        - Missing `page` or `q` parameters will still yield a `200 OK` response
+        with unfiltered or first-page data.
+
+        - Providing invalid `page` parameter, like 0 or a negative number,
+        results in `400 Bad Request` with a clear error message.
       operationId: orders
       parameters:
         - $ref: '#/components/parameters/AuthorizationHeader'
