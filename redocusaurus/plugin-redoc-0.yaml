@@ -27,8 +27,11 @@ info:
 
     ### General Overview
 
-    - **Login Endpoint**: Allows the user to log in and receive access and
-    refresh tokens.
+    - **Login Endpoint**: Allows you to log in and receive access and refresh
+    tokens.
+
+    - **Refresh Endpoint**: Allows you to get the new `access_token`, when the
+    previous one expires. 
 
     - **Dashboard Endpoint**: Provides necessary data for populating the
     dashboard.
