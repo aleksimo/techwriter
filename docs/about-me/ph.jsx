@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+// import Lightbox from 'react-image-lightbox';
+// import 'react-image-lightbox/style.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const CarCom = () => {
