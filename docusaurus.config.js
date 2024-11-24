@@ -32,6 +32,9 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  markdown: {
+    mermaid: true,
+  },
 
   presets: [
     [
@@ -84,6 +87,7 @@ const config = {
 
   plugins: [
     require.resolve('docusaurus-plugin-image-zoom'),
+    '@docusaurus/theme-mermaid',
     [
       '@easyops-cn/docusaurus-search-local',
       ({
@@ -107,6 +111,12 @@ const config = {
     ({
       // Replace with your project's social card
       metadata: [{name: 'keywords', content: 'technical writer, documentation, portfolio, skills, software documentation, docs as code, static site generator, markdown, git,ux writing, product ownership'}],
+      mermaid: {
+        theme: {light: 'dark', dark: 'dark'},
+        options: {
+          TextSize: 12,
+        },
+      },
       zoom: {
         selector: '.markdown :not(em) > img',
         background: {
@@ -138,11 +148,11 @@ const config = {
             label: 'Work experience',
           },
           {
-            docID: 'examples',
+            type: 'docSidebar',
             position: 'right',
-            sidebarId: 'Examples',
+            sidebarId: 'portfolio',
             label: 'Portfolio',
-            to: '/portfolio'
+            // to: '/portfolio'
 
           },
           {
@@ -151,11 +161,11 @@ const config = {
             label: 'About me',
             to: '/docs/about-me/meohmy'
           },
-          {
-            position: 'right',
-            label: 'Contacts',
-            to: '/contacts'
-          },
+          // {
+          //   position: 'right',
+          //   label: 'Contacts',
+          //   to: '/contacts'
+          // },
           {
             href: 'https://github.com/aleksimo/my-cv',
             label: 'GitHub',
@@ -174,6 +184,16 @@ const config = {
       },
       footer: {
         style: 'dark',
+        links: [
+          {
+            label: 'email',
+            href: 'mailto:alexeysimons@gmail.com',
+          },
+          {
+            label: 'linkedin',
+            href: 'https://www.linkedin.com/in/alexey-simonenko/',
+          },
+        ],
         // links: [
         //   {
         //     title: 'Docs',
@@ -215,7 +235,7 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Aleksei Simonenko. Built with Docusaurus`,
       },
       prism: {
         defaultLanguage: 'md',
