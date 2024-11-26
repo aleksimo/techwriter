@@ -22,7 +22,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--secondary button--lg"
-            to="/img/asimonenko_cv.pdf" target="_blank" download>
+            to="/aleksei_simonenko_technical_writer_cv.pdf" target="_blank" download>
             Download CV
           </Link>
         </div>
