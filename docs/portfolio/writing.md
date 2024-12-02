@@ -12,6 +12,8 @@ This page contains samples of my work for the past 4-6 years. Here, you can find
 
 - [Administrator's guide](/docs/examples/access) — a how-to guide for system administrators on enabling users to access custom analytics dashboards via open-source tools Superset and Keycloak.
 
+- [Application setup and dockerization](/docs/examples/docker) — a test assignment for a technical writer position I applied for in  2023. This is a short guide on creating Docker images for apps deployment in a Kubernetes cluster.
+
 - [Release notes](/docs/examples/release-notes) — a sample of the document provided with a software update that summarizes the new features, improvements, and bug fixes included in the new version.
 - [CI/CD implementation guide](/img/samples/sample-3-instruction-2018.pdf) — this sample is part of the internal CI/CD tool documentation based on Docker and Mesos/Marathon. The documentation is initially written in markdown (same as the guides earlier) and published on the portal via Jenkins and the Hugo Static Site generator. **Audience**: internal DevOps team. Wargaming, 2018.
 - [Team process](/img/samples/team-process_.pdf) — the instruction for newly hired mid-senior technical writers. I created the document in the internal Confluence-based knowledge base to facilitate the onboarding process and answer the most common questions.
