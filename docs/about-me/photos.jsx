@@ -1,144 +1,106 @@
-
 import React from 'react';
-import { Gallery } from "react-grid-gallery";
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
+import Lightbox from "yet-another-react-lightbox";
+import Inline from "yet-another-react-lightbox/plugins/inline";
+import "yet-another-react-lightbox/styles.css"; // Don't forget to import the styles
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/plugins/captions.css";
 
 const MyGallery = () => {
-    const images = [
-    {
-        src: useBaseUrl("/img/photos/DSC_3329.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSC_3341.webp"),
-        width: 480,
-    },
+   const [open, setOpen] = React.useState(false);
+   const [index, setIndex] = React.useState(0);
 
-    {
-        src: useBaseUrl("/img/photos/DSC_4133.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/IMG_20220608_220429_396.webp"),
-        width: 480,
-    },
+   const toggleOpen = (state) => () => setOpen(state);
+   const updateIndex = ({ index: current }) => setIndex(current);
 
-    {
-        src: useBaseUrl("/img/photos/IMG_20220612_083743_538.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/IMG_20220608_220432_959.webp"),
-        width: 480,
-    },
+   const slides = [
+      {src: "../../img/photos/DSC_2574.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_3081.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2439.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2966.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2917.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2518.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2397.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_2223.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_1971.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_1821.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_1723.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_1561.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_1052.webp", legend: "Norway"},
+      {src: "../../img/photos/DSC_3329.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSC_3341.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSC_4133.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20220608_220429_396.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20220612_083743_538.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20220608_220432_959.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF6951.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSC_4320.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20220612_083716_055.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF7270.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF6740.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF7284.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20220613_234458_743.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5439.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5458.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5471.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5632.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5746.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF5788.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF6344.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF6404.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF6521.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20210422_144041_984.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20210422_144048_377.webp", legend: "Iceland"},
+      {src:"../../img/photos/IMG_20210422_144054_665.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF8804.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF8675.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF8738.webp", legend: "Iceland"},
+      // {src:"../../img/photos/DSCF6467.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF8863.webp", legend: "Iceland"},
+      {src:"../../img/photos/DSCF7722.webp", legend: "Iceland"},
+   ];
 
-    {
-        src: useBaseUrl("/img/photos/DSCF6951.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSC_4320.webp"),
-        width: 480,
-    },
-
-    {
-        src: useBaseUrl("/img/photos/IMG_20220612_083716_055.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF7270.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF6740.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF7284.webp"),
-        width: 480,
-    },
-
-    {
-        src: useBaseUrl("/img/photos/IMG_20220613_234458_743.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5439.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5458.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5471.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5632.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5746.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF5788.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF6344.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF6404.webp"),
-        width: 480,
-    },
-
-    {
-        src: useBaseUrl("/img/photos/DSCF6521.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/IMG_20210422_144041_984.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/IMG_20210422_144048_377.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/IMG_20210422_144054_665.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF8804.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF8675.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF8738.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF6467.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF8863.webp"),
-        width: 480,
-    },
-    {
-        src: useBaseUrl("/img/photos/DSCF7722.webp"),
-        width: 480,
-        caption: "After Rain (Jeshu John - designerspics.com)",
-    },
-    ];
-    return <Gallery images={images} />;
+   const inline = {
+      style: {
+        width: "100%",
+        maxWidth: "900px",
+        aspectRatio: "3 / 2",
+        margin: "0 auto",
+      },
     };
+
+   return (
+      <>
+         <Lightbox
+            index={index}
+            plugins={[Inline, Captions]}
+            slides={slides}
+            inline={inline}
+            on={{
+               view: updateIndex,
+               click: toggleOpen(true),
+            }}
+            carousel={{
+               finite: 'true',
+               padding: 0,
+               spacing: 0,
+               imageFit: 'contain',
+            }}
+         />
+
+         {/* Fullscreen Lightbox when an image is clicked */}
+         <Lightbox
+            open={open}
+            close={toggleOpen(false)}
+            index={index}
+            slides={slides}
+            on={{ view: updateIndex }}
+            animation={{ fade: 0 }}
+            controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
+         />
+            <p>
+            </p>
+      </>
+   );
+}
 
 export default MyGallery;
