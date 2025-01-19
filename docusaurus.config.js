@@ -110,7 +110,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      metadata: [{name: 'keywords', content: 'technical writer, documentation, portfolio, skills, software documentation, docs as code, static site generator, markdown, git,ux writing, product ownership'}],
+      metadata: [{name: 'keywords', content: 'technical writer, technical documentation, portfolio, skills, software documentation, docs-as-code, static site generator, markdown, git, ux writing, product ownership'}],
       mermaid: {
         theme: {light: 'dark', dark: 'dark'},
         options: {
