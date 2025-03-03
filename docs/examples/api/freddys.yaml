@@ -1,41 +1,41 @@
 openapi: 3.1.0
 info:
-  title: Freddy's shop API
+  title: Freddy's Shop API
   version: 1.0.0
-  license: 
+  license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   description: |
     This API serves as the backbone for managing Freddy's artisanal Halloween candy shop. Through this API, Freddy can perform various tasks such as managing dashboard data, handling orders, and authenticating users.
-    
+
     ### API Behavior
     - **Authentication**: Almost every endpoint requires authentication. A missing or invalid `access_token` will result in a `401 Unauthorized` response.
-    - **Error Handling**: Proper error messages are provided to guide through the required correction. For example, a `400 Bad Request` for missing parameters.
-    - **Rate Limiting**: Although not mentioned, it is advised to handle HTTP `429 Too Many Requests` response gracefully.
+    - **Error Handling**: Clear error messages are provided to guide users when corrections are needed. For example, a `400 Bad Request` is returned when required parameters are missing.
+    - **Rate Limiting**: Although not explicitly implemented in this specification, clients should be prepared to handle HTTP `429 Too Many Requests` responses gracefully.
 
     ### General Overview
-    - **Login Endpoint**: Allows you to log in and receive access and refresh tokens.
-    - **Refresh Endpoint**: Allows you to get the new `access_token`, when the previous one expires. 
-    - **Dashboard Endpoint**: Provides necessary data for populating the dashboard.
-    - **Orders Endpoint**: Fetches orders, supporting pagination and search.
+    - **Login Endpoint**: Authenticates users and returns access and refresh tokens.
+    - **Refresh Endpoint**: Generates a new `access_token` when the previous one expires.
+    - **Dashboard Endpoint**: Provides summarized dashboard data including revenue, orders, and bestsellers.
+    - **Orders Endpoint**: Fetches order data with support for pagination and search filtering.
     
     For more details on each endpoint, refer to the respective sections below.
-
   x-logo:
-    url: 'Freddys_Logo.svg' 
+    url: 'Freddys_Logo.svg'
 servers:
   - url: https://freddy.codesubmit.io
 
-paths: #  Since there're no additional requirements, I will consider all operations synchronous.
+paths:
   /login:
     post:
-      summary: Log in to the Shop's admin panel
+      summary: Log in to the Shop's Admin Panel
       operationId: login
       description: |
-        Authenticate the user and receive `access_token` and `refresh_token`. The `access_token` is used for authorization in subsequent API requests.
-        
+        Authenticate the user and receive an `access_token` and `refresh_token`. The `access_token` is used for authorizing subsequent API requests.
+
         ### Behavior
-        - Providing incorrect credentials results in `401 Unauthorized` with an explicit error message.
+        - If incorrect credentials are provided, the API returns a `401 Unauthorized` response with a clear error message.
+        - **Security Note**: Default values for credentials are provided here solely as examples and should not be used in production environments.
       
       requestBody:
         required: true
@@ -49,25 +49,25 @@ paths: #  Since there're no additional requirements, I will consider all operati
               properties:
                 username:
                   type: string
-                  default: 'freddy' # I know that it's unsafe to provide default values for credentials.
-                  description: Username to log in. 
+                  example: 'freddy'
+                  description: Username to log in.
                 password:
                   type: string
-                  default: 'ElmStreet2019'
-                  description: Password for the corresponding username.
-
+                  example: 'ElmStreet2019'
+                  description: Password corresponding to the username.
+      
       x-codeSamples:
-        - lang: 'cURL' # Will stick to cURL only. Examples for other languages can be generated in the similar manner via Postman
+        - lang: 'cURL'
           source: |
             curl --location 'https://freddy.codesubmit.io/login' \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --data '{
               "username": "freddy",
-              "password": "ElmStreet2019",
+              "password": "ElmStreet2019"
             }'
               
-      responses: 
+      responses:
         '200':
           description: Authentication successful.
           content:
@@ -77,23 +77,28 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   access_token:
                     type: string
-                    description: The JWT `access_token` is valid for 15 minutes. After expiration, send the POST request to the [`/refresh_token`](#operation/refresh) endpoint to renew.
-                    example: o9JyblnSi1[...]AKGcehJui 
-                  token_type: 
+                    description: |
+                      The JWT `access_token` is valid for 15 minutes. After expiration, use the [`/refresh_token`](#operation/refresh) endpoint to renew it.
+                    example: o9JyblnSi1[...]AKGcehJui
+                  token_type:
                     type: string
                     default: Bearer
-                  access_token_expires_in: 
+                    description: The type of token returned.
+                  access_token_expires_in:
                     type: integer
-                    default: 900 # 15 min in seconds
+                    default: 900
+                    description: Time in seconds until the `access_token` expires (15 minutes).
                   refresh_token:
                     type: string
-                    description: Use the `refresh_token` is valid for 30 days.
+                    description: |
+                      The `refresh_token` is used to generate a new `access_token` when the current one expires. It is valid for 30 days.
                     example: JbeSGy91uK[...]nJoiclAhi
-                  refresh_token_expires_in: 
+                  refresh_token_expires_in:
                     type: integer
-                    default: 2592000 # 30 days in seconds
+                    default: 2592000
+                    description: Time in seconds until the `refresh_token` expires (30 days).
         '400':
-          $ref: '#/components/responses/badRequest'  
+          $ref: '#/components/responses/badRequest'
         '401':
           description: User authentication failed. Invalid username-password combination.
           content:
@@ -107,35 +112,34 @@ paths: #  Since there're no additional requirements, I will consider all operati
                   message:
                     type: string
                     example: The provided username or password is incorrect.
-            
+
   /refresh_token:
-    post: 
-      summary: Request new `access_token`
+    post:
+      summary: Request a New Access Token
       operationId: refresh
       description: |
-        Request new `access_token`. 
-        
-        The `access_token` expires in 15 minutes after acquiring. The `refresh_token` expires in 30 days.
+        Request a new `access_token` using a valid `refresh_token`. The `access_token` expires 15 minutes after issuance, while the `refresh_token` expires after 30 days.
 
         ### Behavior
-        
-        An invalid or missing `refresh_token` in the header will result in a `400 Bad Request` or `401 Unauthorized` response with a clear error message.
+        - An invalid or missing `refresh_token` in the header will result in a `400 Bad Request` or `401 Unauthorized` response with a clear error message.
       parameters:
         - in: header
           name: Authorization
           schema:
             type: string
-            default: 'Bearer refresh_token'
+            example: 'Bearer YOUR_REFRESH_TOKEN'
           required: true
+          description: |
+            The `Authorization` header must include the refresh token in the format: `Bearer <refresh_token>`.
       x-codeSamples:
-        - lang: 'cURL' 
+        - lang: 'cURL'
           source: |
             curl --location --request POST 'https://freddy.codesubmit.io/refresh_token' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer {{refresh_token}}'
       responses:
         '200':
-          description: 'Successful token refresh'
+          description: Successful token refresh.
           content:
             application/json:
               schema:
@@ -143,14 +147,16 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   access_token:
                     type: string
-                    description: The JWT `access_token` is valid for 15 minutes.
+                    description: The new JWT `access_token` valid for 15 minutes.
                     example: Ey9iGeln1b[...]ShiOcuKaA
-                  token_type: 
+                  token_type:
                     type: string
                     default: Bearer
-                  access_token_expires_in: 
+                    description: The type of token returned.
+                  access_token_expires_in:
                     type: integer
-                    default: 900 # 15 min in seconds
+                    default: 900
+                    description: Time in seconds until the new `access_token` expires.
         '400':
           description: Bad request. The request may be missing the `refresh_token` in the header or contains an invalid token format.
           content:
@@ -160,12 +166,21 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   error:
                     type: string
-                    example: Bad request
                   message:
                     type: string
-                    example: The `refresh_token` missing or invalid format of the request.
+              examples:
+                missingRefreshToken:
+                  summary: Missing refresh token
+                  value:
+                    error: "Missing parameter"
+                    message: "The `refresh_token` is required in the Authorization header."
+                invalidFormat:
+                  summary: Invalid token format
+                  value:
+                    error: "Invalid token format"
+                    message: "The `refresh_token` does not match the required format. Expected format: 'Bearer <refresh_token>'."
         '401':
-          description: User authentication failed. Invalid refresh token provided.
+          description: User authentication failed. An invalid refresh token was provided.
           content:
             application/json:
               schema:
@@ -173,28 +188,34 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   error:
                     type: string
-                    example: Invalid refresh token.
+                  message:
+                    type: string
+              examples:
+                invalidRefreshToken:
+                  summary: Invalid refresh token
+                  value:
+                    error: "Invalid refresh token"
+                    message: "The provided refresh token is not valid. Please log in again."
 
   /dashboards:
     get:
-      summary: Retrieve Dashboard data
-      description: |
-        Retrieve the data from the dashboard. Make sure you use the `access_token` received from the `/login` endpoint. 
-
-        **Note**: If the `access_token` is expired after 15 minutes, request a fresh one using the [`/refresh_token`](/#operation/refresh) endpoint.
+      summary: Retrieve Dashboard Data
       operationId: dashboard
+      description: |
+        Retrieve data to populate the dashboard. Ensure you use the `access_token` obtained from the `/login` endpoint.
+
+        **Note**: If the `access_token` has expired (after 15 minutes), obtain a new one using the [`/refresh_token`](#operation/refresh) endpoint.
       parameters:
-        - $ref: '#/components/parameters/AuthorizationHeader' # Since the parameter is re-used several times, it's added to components
+        - $ref: '#/components/parameters/AuthorizationHeader'
       x-codeSamples:
-        - lang: 'cURL' 
+        - lang: 'cURL'
           source: |
             curl --location 'https://freddy.codesubmit.io/dashboards' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer {{access_token}}'
-                  
       responses:
         '200':
-          description: 'Dashboard data retrieved successfully'
+          description: Dashboard data retrieved successfully.
           content:
             application/json:
               schema:
@@ -202,97 +223,97 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   blocks:
                     type: array
+                    description: List of dashboard blocks for different time periods.
                     items:
                       type: object
                       properties:
                         period:
                           type: string
                           enum: [today, lastWeek, lastMonth]
-                          description: 'Time period'
+                          description: Time period for the dashboard metrics.
                           example: lastWeek
                         totalRevenue:
                           type: number
                           format: float
-                          description: 'Total revenue in USD for the given period'
-                          example: 34000
+                          description: Total revenue in USD for the specified period.
+                          example: 34000.00
                         numberOfOrders:
                           type: integer
-                          description: 'Number of orders for the given period'
+                          description: Number of orders placed during the specified period.
                           example: 120
-                  barChartImageUrl: # Am I supposed to retrive bar charts here?
+                  barChartImageUrl:
                     type: string
                     format: uri
-                    description: URL to fetch the bar chart image representing revenue data
+                    description: |
+                      URL to retrieve the bar chart image representing the revenue data. This image can be displayed directly in a dashboard UI.
+                    example: https://freddy.codesubmit.io/images/bar_chart_lastWeek.png
                   bestsellers:
                     type: array
+                    description: List of best-selling products with sales details.
                     items:
                       type: object
                       properties:
                         productName:
                           type: string
-                          description: Name of the best-selling product
+                          description: Name of the best-selling product.
                           example: Necronomicon
                         price:
                           type: number
                           format: float
-                          description: Price of the product
-                          example: 66.9
+                          description: Price of the product in USD.
+                          example: 66.90
                         unitsSold:
                           type: integer
-                          description: Number of units sold for the product
+                          description: Number of units sold for the product.
                           example: 100500
                         revenue:
                           type: number
                           format: float
-                          description: Total revenue generated from the product
-                          example: 6723450
-        
+                          description: Total revenue generated by the product in USD.
+                          example: 6723450.00
         '400':
-          $ref: '#/components/responses/badRequest'  
+          $ref: '#/components/responses/badRequest'
         '401':
-          $ref: '#/components/responses/invalidToken' # Since the parameter is re-used several times, it's added to components
+          $ref: '#/components/responses/invalidToken'
 
   /orders:
-    get: 
-      summary: Retrieve the list of Orders
+    get:
+      summary: Retrieve the List of Orders
+      operationId: orders
       description: |
-        Fetch the orders. 
-      
-        You can paginate results using the `page` parameter and filter them with the `q` parameter. Make sure to use the `access_token` retrieved from the `/login` endpoint.
+        Fetch a list of orders. Use the query parameters to paginate results and filter orders by search term.
 
         ### Behavior
-        
-        - Missing `page` or `q` parameters will still yield a `200 OK` response with unfiltered or first-page data.
-        - Providing invalid `page` parameter, like 0 or a negative number, results in `400 Bad Request` with a clear error message.
-
-      operationId: orders
+        - If `page` or `q` parameters are omitted, the API returns the first page of unfiltered orders.
+        - An invalid `page` parameter (e.g., 0 or a negative number) results in a `400 Bad Request` with an explanatory error message.
       parameters:
-        - $ref: '#/components/parameters/AuthorizationHeader' 
+        - $ref: '#/components/parameters/AuthorizationHeader'
         - name: page
-          in:  query
-          schema: 
+          in: query
+          schema:
             type: integer
             format: int32
             minimum: 1
-          description: Retrieve orders from the specific page number. 
+          description: |
+            Page number for paginated order results. Must be an integer greater than 0.
           example: 1
         - name: q
-          in:  query
+          in: query
           required: false
-          schema: 
+          schema:
             type: string
-          description: Search a term to filter the orders
-          example: Spooky skeleton       
+          description: |
+            Search term used to filter orders. Matches against product names and other order details.
+          example: Spooky skeleton
       x-codeSamples:
-        - lang: 'cURL' 
+        - lang: 'cURL'
           source: |
             curl --location 'https://freddy.codesubmit.io/orders?page=2&q=Necronomicon' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer {{access_token}}'
-  
       responses:
         '200':
-          description: Successfully retrieved data
+          description: Successfully retrieved order data.
           content:
             application/json:
               schema:
@@ -300,23 +321,27 @@ paths: #  Since there're no additional requirements, I will consider all operati
                 properties:
                   data:
                     type: array
+                    description: List of orders matching the query and pagination criteria.
                     items:
                       $ref: '#/components/schemas/Order'
-                  totalItems: # Total number of orders
+                  totalItems:
                     type: integer
+                    description: Total number of orders available.
                     example: 25
-                  totalPages: # Total number of pages
+                  totalPages:
                     type: integer
+                    description: Total number of pages based on the pagination settings.
                     example: 3
-                  currentPage: # Current page number
+                  currentPage:
                     type: integer
+                    description: The current page number of the returned order results.
                     example: 1
         '400':
-          $ref: '#/components/responses/badRequest'            
+          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/invalidToken'
-      
-security: 
+
+security:
   - BearerAuth: []
 
 components:
@@ -325,13 +350,15 @@ components:
       name: Authorization
       in: header
       required: true
-      description: JWT `access_token` received after successful login.
+      description: |
+        JWT `access_token` obtained after a successful login. Format: `Bearer <access_token>`.
       schema:
         type: string
-        example: Bearer access_token
+        example: Bearer YOUR_ACCESS_TOKEN
   responses:
     invalidToken:
-      description: User authentication failed. `access_token` may have expired or is invalid. To renew, send the POST request to the [`/refresh_token`](#operation/refresh) endpoint. 
+      description: |
+        Authentication failed. The provided `access_token` may have expired or is invalid. Use the [`/refresh_token`](#operation/refresh) endpoint to obtain a new token.
       content:
         application/json:
           schema:
@@ -339,20 +366,42 @@ components:
             properties:
               error:
                 type: string
-                example: Invalid `access_token` provided
-    badRequest:
-      description: Bad request. The request may be missing required parameters or contains invalid data.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                example: Bad request
               message:
                 type: string
-                example: Required parameters missing or contain invalid data.
+          examples:
+            expiredToken:
+              summary: Expired token error
+              value:
+                error: "Expired token"
+                message: "The access token has expired. Please refresh your token."
+            malformedToken:
+              summary: Malformed token error
+              value:
+                error: "Invalid token"
+                message: "The provided token format is incorrect."
+    badRequest:
+      description: |
+        The request was malformed or missing required parameters. Please check the error details and correct the request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+          examples:
+            missingParameter:
+              summary: Missing parameter error
+              value:
+                error: "Missing parameter"
+                message: "The 'username' field is required."
+            invalidParameter:
+              summary: Invalid parameter error
+              value:
+                error: "Invalid parameter"
+                message: "The 'page' parameter must be an integer greater than 0."
   securitySchemes:
     BearerAuth:
       type: http
@@ -364,17 +413,18 @@ components:
       properties:
         productName:
           type: string
-          description: Name of the product
-          example:  At the Mountains of Madness
+          description: Name of the product ordered.
+          example: "At the Mountains of Madness"
         date:
           type: string
           format: date
-          description: Date of the order
-          example: 01/19/1931
+          description: |
+            Date when the order was placed. The date should follow the ISO 8601 format (YYYY-MM-DD).
+          example: "1931-01-19"
         price:
           type: number
           format: float
-          description: Price of the order
+          description: Price of the order in USD.
           example: 10.99
         status:
           type: string
@@ -382,8 +432,5 @@ components:
             - Processing
             - Shipped
             - Delivered
-          description: Status of the order
+          description: Current status of the order.
           example: Delivered
-
-        
-
